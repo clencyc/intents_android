@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnShare: Button
     private lateinit var btnMPESA: Button
     private lateinit var btnCALL: Button
+    private lateinit var btnWEB: Button
 
 
     @SuppressLint("MissingInflatedId")
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         btnShare = findViewById(R.id.btnshare)
         btnMPESA = findViewById(R.id.btnmpesa)
         btnCALL = findViewById(R.id.btncall)
+        btnWEB = findViewById(R.id.btnwesite)
 
 
         btnSMS.setOnClickListener {
@@ -58,11 +60,11 @@ class MainActivity : AppCompatActivity() {
             simToolkitintent?.let { startActivity(it) }
         }
         btnCALL.setOnClickListener {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0792552491"))
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0792552491"));
             if (ContextCompat.checkSelfPermission(
                     this@MainActivity,
-                    android.Manifest.permission.CALL_PHONE
-                ) != PackageManager.PERMISSION_GRANTED
+                    android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED
             ) {
                 ActivityCompat.requestPermissions(
                     this@MainActivity,
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     1
                 )
             } else {
-                startActivity(intent)
+                startActivity(intent);
             }
         }
 
@@ -80,6 +82,11 @@ class MainActivity : AppCompatActivity() {
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_TEXT, "Hey, download this app!")
             startActivity(shareIntent)
+        }
+
+        btnWEB.setOnClickListener {
+            val gotowebsite = Intent(this, WebsiteActivity::class.java)
+            startActivity(gotowebsite)
         }
     }
 }
